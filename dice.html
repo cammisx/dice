@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Dice Roller</title>
+<style>
+    body {
+        background: #fafafa;
+        font-family: system-ui, sans-serif;
+        padding: 20px;
+        color: #222;
+        max-width: 480px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .dice-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 12px;
+        background: white;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        border-color: #000;
+        background: #eee;
+    }
+
+    #results {
+        margin-top: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        min-height: 80px;
+        white-space: pre-line;
+        font-family: monospace;
+    }
+
+    .clear {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        background: #f66;
+        color: white;
+        border-color: #d55;
+    }
+
+</style>
+</head>
+<body>
+
+<h2>🎲 Dice Roller</h2>
+
+<div class="dice-grid">
+    <button onclick="roll(4)">d4</button>
+    <button onclick="roll(6)">d6</button>
+    <button onclick="roll(8)">d8</button>
+    <button onclick="roll(10)">d10</button>
+    <button onclick="roll(12)">d12</button>
+    <button onclick="roll(20)">d20</button>
+    <button onclick="roll(100)">d100</button>
+</div>
+
+<div id="results"></div>
+<button class="clear" onclick="clearResults()">Limpar</button>
+
+<script>
+function roll(sides) {
+    const value = Math.floor(Math.random() * sides) + 1;
+    const box = document.getElementById("results");
+
+    const timestamp = new Date().toLocaleTimeString("pt-BR", {hour12:false});
+    box.textContent += `[${timestamp}]  d${sides} → ${value}\n`;
+}
+
+function clearResults() {
+    document.getElementById("results").textContent = "";
+}
+</script>
+
+</body>
+</html>
